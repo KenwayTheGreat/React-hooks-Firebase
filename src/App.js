@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import fire from "./fire";
+import Login from "./Components/Login";
 import "./App.css";
 
 function App() {
@@ -78,7 +79,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hell O' World</h1>
+      <Login />
     </div>
   );
 }
