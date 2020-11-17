@@ -79,7 +79,18 @@ function App() {
 
   return (
     <div className="App">
-      <Login />
+      <Login
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+        handleSignUp={handleSignUp}
+        hasAccount={hasAcc}
+        setHasAccount={setHasAcc}
+        emailError={emailError}
+        passwordError={passwordError}
+      />
     </div>
   );
 }
