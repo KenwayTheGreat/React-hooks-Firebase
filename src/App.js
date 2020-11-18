@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fire from "./fire";
 import Login from "./Components/Login";
+import Hero from "./Components/Hero";
 import "./App.css";
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [hasAcc, setHasAcc] = useState(false);
+  const [hasAcc, setHasAcc] = useState(true);
 
   const clearInputs = () => {
     setEmail("");
@@ -59,11 +60,11 @@ function App() {
   };
 
   const handleLogout = () => {
-    fire.auth.signOut();
+    fire.auth().signOut();
   };
 
   const authListener = () => {
-    fire.auth.onAuthStateChanged((user) => {
+    fire.auth().onAuthStateChanged((user) => {
       if (user) {
         clearInputs();
         setUser(user);
@@ -79,18 +80,22 @@ function App() {
 
   return (
     <div className="App">
-      <Login
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        handleLogin={handleLogin}
-        handleSignUp={handleSignUp}
-        hasAccount={hasAcc}
-        setHasAccount={setHasAcc}
-        emailError={emailError}
-        passwordError={passwordError}
-      />
+      {user ? (
+        <Hero handleLogout={handleLogout} />
+      ) : (
+        <Login
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignUp={handleSignUp}
+          hasAccount={hasAcc}
+          setHasAccount={setHasAcc}
+          emailError={emailError}
+          passwordError={passwordError}
+        />
+      )}
     </div>
   );
 }

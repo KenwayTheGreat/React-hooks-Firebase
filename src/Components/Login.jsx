@@ -1,7 +1,7 @@
 import React from "react";
 
 function Login(props) {
-  const [
+  /*const [
     email,
     setEmail,
     password,
@@ -12,29 +12,50 @@ function Login(props) {
     setHasAccount,
     emailError,
     passwordError,
-  ] = props;
+  ] = props;*/
   return (
     <section className="login">
       <div className="loginContainer">
         <label>UserName</label>
         <input
           type="text"
-          outOfFocus
           required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={props.email}
+          onChange={(e) => props.setEmail(e.target.value)}
         />
-        <p className="error-message">{emailError}</p>
+        <p className="errorMsg">{props.emailError}</p>
 
         <label>Password</label>
         <input
-          type="text"
-          outOfFocus
+          type="password"
           required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={props.password}
+          onChange={(e) => props.setPassword(e.target.value)}
         />
-        <p className="error-message">{emailError}</p>
+        <p className="errorMsg">{props.passwordError}</p>
+        <div className="btnContainer">
+          {props.hasAccount ? (
+            <React.Fragment>
+              <button onClick={props.handleLogin}>Sign In</button>
+              <p>
+                Don't have an account?{" "}
+                <span onClick={() => props.setHasAccount(!props.hasAccount)}>
+                  Sign Up
+                </span>
+              </p>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <button onClick={props.handleSignUp}>Sign Up</button>
+              <p>
+                Have an account?{" "}
+                <span onClick={() => props.setHasAccount(!props.hasAccount)}>
+                  Sign In
+                </span>
+              </p>
+            </React.Fragment>
+          )}
+        </div>
       </div>
     </section>
   );
